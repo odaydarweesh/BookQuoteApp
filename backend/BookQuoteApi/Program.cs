@@ -30,6 +30,7 @@ app.UseCors("AllowAngularApp");
 
 app.UseAuthorization();
 
+
 app.MapControllers();
 
 app.Run();
