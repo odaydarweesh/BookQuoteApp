@@ -1,0 +1,50 @@
+LOGIN PAGE
+
+- Header: "Book & Quote Manager"
+- Username input field
+- Password input field
+- Login button (primary color)
+- Link to register page below
+
+REGISTER PAGE
+
+- Header: "Create Account"
+- Username input field
+- Email input field
+- Password input field
+- Register button (primary color)
+- Link to login page below
+
+BOOKS LIST PAGE
+
+- Navigation bar: Logo | Books | Quotes | Dark/Light Toggle | Logout
+- Page title: "My Books"
+- Search bar
+- "Add New Book" button (top right)
+- Grid of book cards (3 columns on desktop, 1 on mobile)
+- Each card shows: Title, Author, Published Date, Edit button, Delete button
+
+ADD/EDIT BOOK PAGE
+
+- Navigation bar
+- Form title: "Add New Book" or "Edit Book"
+- Title input field (required)
+- Author input field (required)
+- Published Date picker (required)
+- Save button | Cancel button
+
+QUOTES LIST PAGE
+
+- Navigation bar
+- Page title: "My Favorite Quotes"
+- "Add New Quote" button
+- List of quote cards
+- Each card shows: Quote text, Author name, Edit button, Delete button
+
+ADD/EDIT QUOTE PAGE
+
+- Navigation bar
+- Form title: "Add New Quote" or "Edit Quote"
+- Text area (max 500 chars, required)
+- Author input field (optional)
+- Save button | Cancel button

@@ -1,0 +1,25 @@
+Entity: User
+- Id: Unique identifier (int, primary key)
+- Username: User login name (string, required, unique, max 50 chars)
+- Email: User email address (string, required, unique, max 100 chars)
+- PasswordHash: Encrypted password (string, required)
+- CreatedAt: Account creation timestamp (DateTime, default now)
+
+Entity: Book
+- Id: Unique identifier (int, primary key)
+- Title: Book title (string, required, max 200 chars)
+- Author: Book author name (string, required, max 100 chars)
+- PublishedDate: Publication date (DateTime, required)
+- UserId: Owner user ID (int, foreign key to User.Id)
+- CreatedAt: Record creation timestamp (DateTime, default now)
+
+Entity: Quote
+- Id: Unique identifier (int, primary key)
+- Text: Quote content (string, required, max 500 chars)
+- Author: Quote author name (string, optional, max 100 chars)
+- UserId: Owner user ID (int, foreign key to User.Id)
+- CreatedAt: Record creation timestamp (DateTime, default now)
+
+Relationships:
+- User (1) ←→ (Many) Books (One-to-Many)
+- User (1) ←→ (Many) Quotes (One-to-Many)
