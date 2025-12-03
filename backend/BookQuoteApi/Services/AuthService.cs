@@ -111,20 +111,25 @@ namespace BookQuoteApi.Services
 
             var claims = new[]
             {
+
                 new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
                 new Claim(ClaimTypes.Name, username),
                 new Claim(ClaimTypes.Email, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
+
+            // Fix: Handle null ExpirationInMinutes
+            var expiryMinutes = jwtSettings["ExpirationInMinutes"];
+            var minutes = string.IsNullOrEmpty(expiryMinutes) ? 1440 : int.Parse(expiryMinutes);
+
             var token = new JwtSecurityToken(
                 issuer: jwtSettings["Issuer"],
                 audience: jwtSettings["Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(int.Parse(jwtSettings["ExpirationInMinutes"] ?? "60")),
-
+                expires: DateTime.UtcNow.AddMinutes(minutes),
                 signingCredentials: credentials
-            );
+                    );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
