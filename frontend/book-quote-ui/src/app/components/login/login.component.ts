@@ -1,22 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
-})
-
-@Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -43,19 +34,22 @@ export class LoginComponent {
     this.authService.login({ email: this.email, password: this.password })
       .subscribe({
         next: (response: any) => {
-          if (response.success) {
+          console.log('Login response:', response);
+
+          if (response && response.success && response.token) {
+            // token تم حفظه في AuthService (localStorage)
             this.router.navigate(['/books']);
           } else {
             this.errorMessage = response.message || 'Login failed. Please check your credentials.';
           }
+
           this.isLoading = false;
         },
-        error: (error: any) => {
+        error: () => {
           this.errorMessage = 'Login error. Please check your credentials.';
           this.isLoading = false;
         }
       });
   }
-
 
 }

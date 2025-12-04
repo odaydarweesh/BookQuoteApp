@@ -4,11 +4,12 @@
         <div class="nav-actions">
             <button routerLink="/quotes" class="btn-secondary">Quotes</button>
             <button (click)="logout()" class="btn-logout">Logout</button>
+
         </div>
     </nav>
 
     <div class="content">
-        <!-- Add loading spinner -->
+        <!-- Loading spinner -->
         <div *ngIf="isLoading" class="loading-overlay">
             <div class="spinner"></div>
             <p>Loading books...</p>
@@ -60,5 +61,32 @@
         <div *ngIf="books.length === 0 && !isLoading" class="empty-state">
             <p>📚 No books yet. Start by adding a new book!</p>
         </div>
+
+
+        <section class="details-table-section" *ngIf="books && books.length">
+            <h2>Books Details</h2>
+            <table class="details-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Published Date</th>
+                        <th>Created At</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of books; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.publishedDate | date:'yyyy-MM-dd' }}</td>
+                        <td>{{ book.createdAt | date:'yyyy-MM-dd HH:mm' }}</td>
+                        <td>{{ book.updatedAt | date:'yyyy-MM-dd HH:mm' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
 </div>

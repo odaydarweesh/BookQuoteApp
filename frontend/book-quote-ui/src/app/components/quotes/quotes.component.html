@@ -8,7 +8,7 @@
     </nav>
 
     <div class="content">
-        <!-- Add loading spinner -->
+        <!-- Loading spinner -->
         <div *ngIf="isLoading" class="loading-overlay">
             <div class="spinner"></div>
             <p>Loading quotes...</p>
@@ -25,8 +25,8 @@
             <form (ngSubmit)="onSubmit()">
                 <div class="form-group">
                     <label>Quote Text</label>
-                    <textarea [(ngModel)]="quoteForm.text" name="text" required class="form-control"
-                        rows="3"></textarea>
+                    <textarea [(ngModel)]="quoteForm.text" name="text" required class="form-control" rows="3">
+          </textarea>
                 </div>
 
                 <div class="form-group">
@@ -40,6 +40,7 @@
             </form>
         </div>
 
+        <!-- Cards -->
         <div class="quotes-grid">
             <div *ngFor="let quote of quotes" class="quote-card">
                 <p class="text">"{{ quote.text }}"</p>
@@ -55,5 +56,29 @@
         <div *ngIf="quotes.length === 0 && !isLoading" class="empty-state">
             <p>💬 No quotes yet. Start by adding a new quote!</p>
         </div>
+
+        <!-- Details table -->
+        <section class="details-table-section" *ngIf="quotes && quotes.length">
+            <h2>Quotes Details</h2>
+            <table class="details-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Quote</th>
+                        <th>Author</th>
+                        <th>Created At</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let quote of quotes; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ quote.text }}</td>
+                        <td>{{ quote.author }}</td>
+                        <td>{{ quote.createdAt | date:'yyyy-MM-dd HH:mm' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
     </div>
 </div>
