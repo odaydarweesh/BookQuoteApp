@@ -1,0 +1,59 @@
+<div class="quotes-container">
+    <nav class="navbar">
+        <h1>💬 Quotes Management</h1>
+        <div class="nav-actions">
+            <button routerLink="/books" class="btn-secondary">Books</button>
+            <button (click)="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="content">
+        <!-- Add loading spinner -->
+        <div *ngIf="isLoading" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Loading quotes...</p>
+        </div>
+
+        <div class="header">
+            <button (click)="toggleForm()" class="btn-primary">
+                {{ showForm ? 'Cancel' : '+ Add New Quote' }}
+            </button>
+        </div>
+
+        <div *ngIf="showForm" class="form-card">
+            <h2>{{ editMode ? 'Edit Quote' : 'New Quote' }}</h2>
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Quote Text</label>
+                    <textarea [(ngModel)]="quoteForm.text" name="text" required class="form-control"
+                        rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" [(ngModel)]="quoteForm.author" name="author" required class="form-control">
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    {{ editMode ? 'Save Changes' : 'Add Quote' }}
+                </button>
+            </form>
+        </div>
+
+        <div class="quotes-grid">
+            <div *ngFor="let quote of quotes" class="quote-card">
+                <p class="text">"{{ quote.text }}"</p>
+                <p class="author">— {{ quote.author }}</p>
+                <p class="date">📅 {{ quote.createdAt | date:'yyyy-MM-dd' }}</p>
+                <div class="actions">
+                    <button (click)="editQuote(quote)" class="btn-edit">Edit</button>
+                    <button (click)="deleteQuote(quote.id)" class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="quotes.length === 0 && !isLoading" class="empty-state">
+            <p>💬 No quotes yet. Start by adding a new quote!</p>
+        </div>
+    </div>
+</div>

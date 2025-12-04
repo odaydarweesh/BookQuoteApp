@@ -1,0 +1,64 @@
+<div class="books-container">
+    <nav class="navbar">
+        <h1>📚 Books Management</h1>
+        <div class="nav-actions">
+            <button routerLink="/quotes" class="btn-secondary">Quotes</button>
+            <button (click)="logout()" class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <div class="content">
+        <!-- Add loading spinner -->
+        <div *ngIf="isLoading" class="loading-overlay">
+            <div class="spinner"></div>
+            <p>Loading books...</p>
+        </div>
+
+        <div class="header">
+            <button (click)="toggleForm()" class="btn-primary">
+                {{ showForm ? 'Cancel' : '+ Add New Book' }}
+            </button>
+        </div>
+
+        <div *ngIf="showForm" class="form-card">
+            <h2>{{ editMode ? 'Edit Book' : 'New Book' }}</h2>
+            <form (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Book Title</label>
+                    <input type="text" [(ngModel)]="bookForm.title" name="title" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" [(ngModel)]="bookForm.author" name="author" required class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Published Date</label>
+                    <input type="date" [(ngModel)]="bookForm.publishedDate" name="publishedDate" required
+                        class="form-control">
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    {{ editMode ? 'Save Changes' : 'Add Book' }}
+                </button>
+            </form>
+        </div>
+
+        <div class="books-grid">
+            <div *ngFor="let book of books" class="book-card">
+                <h3>{{ book.title }}</h3>
+                <p class="author">✍️ {{ book.author }}</p>
+                <p class="date">📅 {{ book.publishedDate | date:'yyyy-MM-dd' }}</p>
+                <div class="actions">
+                    <button (click)="editBook(book)" class="btn-edit">Edit</button>
+                    <button (click)="deleteBook(book.id)" class="btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="books.length === 0 && !isLoading" class="empty-state">
+            <p>📚 No books yet. Start by adding a new book!</p>
+        </div>
+    </div>
+</div>
