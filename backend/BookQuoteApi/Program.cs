@@ -19,8 +19,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     if (isProduction)
     {
-        // Use SQLite for Render (production)
-        options.UseSqlite(connectionString ?? "Data Source=bookquote.db");
+        // Use PostgreSQL for Render (production)
+        options.UseNpgsql(connectionString ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
     }
     else
     {
