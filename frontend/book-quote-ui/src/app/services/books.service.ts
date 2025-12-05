@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments';
 
 interface Book {
     id: number;
@@ -21,7 +22,7 @@ interface CreateBookRequest {
     providedIn: 'root'
 })
 export class BooksService {
-    private apiUrl = 'https://bookquoteapp-8pxm.onrender.com/api/Auth';
+    private apiUrl = environment.apiUrlBooks;
 
     constructor(private http: HttpClient) { }
 

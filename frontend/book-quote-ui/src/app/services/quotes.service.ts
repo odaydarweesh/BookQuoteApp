@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments';
 export interface Quote {
     id: number;
     text: string;
@@ -19,7 +19,8 @@ export interface CreateQuoteRequest {
     providedIn: 'root'
 })
 export class QuotesService {
-    private apiUrl = 'https://bookquoteapp-8pxm.onrender.com/api/Auth';
+    private apiUrl = environment.apiUrlQuotes;
+
 
     constructor(private http: HttpClient) { }
 
