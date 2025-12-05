@@ -2,8 +2,8 @@
 
 const isProd = window.location.hostname !== 'localhost';
 
-const baseUrlProd = 'https://book-quote-api.onrender.com/api';
-const baseUrlDev = 'https://localhost:7001/api';
+const baseUrlProd = 'https://bookquoteapp-8pxm.onrender.com/api';
+const baseUrlDev = 'http://localhost:5010/api';
 
 export const environment = {
   production: isProd,
