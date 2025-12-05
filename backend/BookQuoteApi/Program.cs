@@ -12,8 +12,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Add Database Context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var isProduction = builder.Environment.IsProduction();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    if (isProduction)
+    {
+        // Use SQLite for Render (production)
+        options.UseSqlite(connectionString ?? "Data Source=bookquote.db");
+    }
+    else
+    {
+        // Use SQL Server for local development
+        options.UseSqlServer(connectionString);
+    }
+});
 
 // Add Authentication Service
 builder.Services.AddScoped<IAuthService, AuthService>();
