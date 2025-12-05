@@ -2,24 +2,21 @@
 
 const isProd = window.location.hostname !== 'localhost';
 
-const baseUrlProd = 'https://book-quote-api.onrender.com/api';
-const baseUrlDev = 'http://localhost:5010/api';
-
 export const environment = {
   production: isProd,
 
   // User Authentication
   apiUrlAuth: isProd
-    ? `${baseUrlProd}/Auth`
-    : `${baseUrlDev}/Auth`,
+    ? 'https://book-quote-api.onrender.com/api/Auth'
+    : 'http://localhost:5010/api/Auth',
 
   // Books API
   apiUrlBooks: isProd
-    ? `${baseUrlProd}/Books`
-    : `${baseUrlDev}/Books`,
+    ? 'https://book-quote-api.onrender.com/api/Books'
+    : 'http://localhost:5010/api/Books',
 
   // Quotes API
   apiUrlQuotes: isProd
-    ? `${baseUrlProd}/Quotes`
-    : `${baseUrlDev}/Quotes`
+    ? 'https://book-quote-api.onrender.com/api/Quotes'
+    : 'http://localhost:5010/api/Quotes'
 };
