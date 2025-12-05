@@ -6,7 +6,7 @@ import { Observable, tap } from 'rxjs';
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = 'http://localhost:5010/api/auth';
+    private apiUrl = 'https://bookquoteapp-8pxm.onrender.com/api/Auth';
 
     constructor(private http: HttpClient) { }
 

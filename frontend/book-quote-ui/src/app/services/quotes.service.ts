@@ -19,7 +19,7 @@ export interface CreateQuoteRequest {
     providedIn: 'root'
 })
 export class QuotesService {
-    private apiUrl = 'http://localhost:5010/api/quotes';
+    private apiUrl = 'https://bookquoteapp-8pxm.onrender.com/api/Auth';
 
     constructor(private http: HttpClient) { }
 
