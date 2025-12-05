@@ -2,7 +2,7 @@
 
 const isProd = window.location.hostname !== 'localhost';
 
-const baseUrlProd = 'https://bookquoteapp-8pxm.onrender.com/api';
+const baseUrlProd = 'https://book-quote-api.onrender.com/api';
 const baseUrlDev = 'http://localhost:5010/api';
 
 export const environment = {
