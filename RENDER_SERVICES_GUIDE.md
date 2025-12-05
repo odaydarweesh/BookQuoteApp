@@ -1,44 +1,44 @@
-# 🔗 دليل خدمات Render - BookQuoteApp
+# Render Services Guide - BookQuoteApp
 
-## 📋 ملخص الخدمات المنشورة
+## Service Summary
 
-بناءً على الصور المرفقة، لديك **4 خدمات** منشورة على Render:
+Based on your Render dashboard, you have **4 services** deployed:
 
-### 🔵 الخدمات الموصى باستخدامها (الأحدث):
+### 🔵 Recommended Services (Latest):
 
 #### 1. **Backend API** 
-- **الاسم:** `book-quote-api`
-- **النوع:** Docker (Web Service)
-- **الرابط:** `https://book-quote-api.onrender.com`
-- **آخر تحديث:** December 5, 2025 at 10:40 PM
-- **الحالة:** ✅ Deployed
+- **Name:** `book-quote-api`
+- **Type:** Docker (Web Service)
+- **URL:** `https://book-quote-api.onrender.com`
+- **Last Update:** December 5, 2025 at 10:40 PM
+- **Status:** ✅ Deployed
 
 #### 2. **Frontend UI**
-- **الاسم:** `book-quote-ui`
-- **النوع:** Static Site
-- **الرابط:** `https://book-quote-ui.onrender.com`
-- **آخر تحديث:** December 5, 2025 at 10:34 PM
-- **الحالة:** ✅ Deployed
+- **Name:** `book-quote-ui`
+- **Type:** Static Site
+- **URL:** `https://book-quote-ui.onrender.com`
+- **Last Update:** December 5, 2025 at 10:34 PM
+- **Status:** ✅ Deployed
 
 ---
 
-### 🔴 الخدمات القديمة (يمكن حذفها):
+### 🔴 Old Services (Can be deleted):
 
-#### 3. **BookQuoteApp** (Backend القديم)
-- **الرابط:** `https://bookquoteapp-8pxm.onrender.com`
-- **آخر تحديث:** December 5, 2025 at 10:06 PM
-- **الحالة:** يمكن حذفها أو إيقافها
+#### 3. **BookQuoteApp** (Old Backend)
+- **URL:** `https://bookquoteapp-8pxm.onrender.com`
+- **Last Update:** December 5, 2025 at 10:06 PM
+- **Status:** Can be deleted or stopped
 
-#### 4. **BookQuoteApp-1** (Frontend القديم)
-- **الرابط:** `https://bookquoteapp-1.onrender.com`
-- **آخر تحديث:** December 5, 2025 at 10:34 PM
-- **الحالة:** يمكن حذفها أو إيقافها
+#### 4. **BookQuoteApp-1** (Old Frontend)
+- **URL:** `https://bookquoteapp-1.onrender.com`
+- **Last Update:** December 5, 2025 at 10:34 PM
+- **Status:** Can be deleted or stopped
 
 ---
 
-## ⚙️ التكوين الصحيح
+## ⚙️ Correct Configuration
 
-### ✅ تم تحديث الكود ليستخدم:
+### ✅ Code has been updated to use:
 
 **Frontend (`environments.ts`):**
 ```typescript
@@ -56,45 +56,45 @@ policy.WithOrigins(
 
 ---
 
-## 🚀 الخطوات التالية
+## 🚀 Next Steps
 
-### 1. **نشر التحديثات:**
-بعد حفظ التغييرات، قم بـ push الكود إلى GitHub:
+### 1. **Deploy Updates:**
+After saving changes, push code to GitHub:
 ```bash
 git add .
 git commit -m "Update production URLs to use latest Render services"
 git push origin main
 ```
 
-### 2. **التحقق من النشر:**
-- انتظر حتى يكتمل النشر التلقائي على Render
-- افتح `https://book-quote-ui.onrender.com`
-- جرب تسجيل الدخول
+### 2. **Verify Deployment:**
+- Wait for automatic deployment to complete on Render
+- Open `https://book-quote-ui.onrender.com`
+- Try logging in
 
-### 3. **حذف الخدمات القديمة (اختياري):**
-لتوفير الموارد وتجنب الارتباك:
-- احذف `BookQuoteApp` (Backend القديم)
-- احذف `BookQuoteApp-1` (Frontend القديم)
-
----
-
-## 📝 ملاحظات مهمة
-
-### ⚠️ الخطة المجانية في Render:
-- الخدمات تدخل في وضع Sleep بعد 15 دقيقة من عدم النشاط
-- أول طلب بعد Sleep قد يستغرق 50 ثانية أو أكثر
-- هذا طبيعي تماماً للخطة المجانية
-
-### 🔄 التحديثات التلقائية:
-- كلا الخدمتين (`book-quote-api` و `book-quote-ui`) مرتبطتان بـ GitHub
-- أي push إلى branch `main` سيؤدي إلى نشر تلقائي
+### 3. **Delete Old Services (Optional):**
+To save resources and avoid confusion:
+- Delete `BookQuoteApp` (Old Backend)
+- Delete `BookQuoteApp-1` (Old Frontend)
 
 ---
 
-## ✅ الخلاصة
+## 📝 Important Notes
 
-**الخدمات الصحيحة التي يجب استخدامها:**
+### ⚠️ Render Free Tier:
+- Services go to sleep after 15 minutes of inactivity
+- First request after sleep may take 50 seconds or more
+- This is completely normal for the free tier
+
+### 🔄 Automatic Updates:
+- Both services (`book-quote-api` and `book-quote-ui`) are linked to GitHub
+- Any push to `main` branch will trigger automatic deployment
+
+---
+
+## ✅ Summary
+
+**Correct Services to Use:**
 - **Frontend:** `https://book-quote-ui.onrender.com`
 - **Backend:** `https://book-quote-api.onrender.com`
 
-**تم تحديث الكود ليستخدم هذه الخدمات تلقائياً.**
+**Code has been updated to use these services automatically.**

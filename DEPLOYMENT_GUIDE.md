@@ -1,127 +1,127 @@
-# 🚀 نشر التحديثات على Render
+# Deploying Updates to Render
 
-## ✅ التعديلات التي تمت
+## ✅ Changes Made
 
-تم تحديث الكود لحل مشكلة قاعدة البيانات على Render:
+The code has been updated to fix the database issue on Render:
 
-### 1. إضافة دعم SQLite
-- ✅ تم إضافة `Microsoft.EntityFrameworkCore.Sqlite` package
-- ✅ تم تحديث `Program.cs` لاستخدام SQLite في production
-- ✅ تم إنشاء `appsettings.Production.json` مع إعدادات SQLite
+### 1. Added SQLite Support
+- ✅ Added `Microsoft.EntityFrameworkCore.Sqlite` package
+- ✅ Updated `Program.cs` to use SQLite in production
+- ✅ Created `appsettings.Production.json` with SQLite settings
 
-### 2. التكوين التلقائي
-- **Local (Development):** يستخدم SQL Server
-- **Render (Production):** يستخدم SQLite
+### 2. Automatic Configuration
+- **Local (Development):** Uses SQL Server
+- **Render (Production):** Uses SQLite
 
 ---
 
-## 📋 خطوات النشر
+## 📋 Deployment Steps
 
-### 1. احفظ جميع الملفات
+### 1. Save All Files
 ```bash
-# تأكد من حفظ جميع الملفات في VS Code
+# Make sure all files are saved in VS Code
 ```
 
-### 2. Commit و Push إلى GitHub
+### 2. Commit & Push to GitHub
 ```bash
 git add .
 git commit -m "Fix: Add SQLite support for Render deployment"
 git push origin main
 ```
 
-### 3. انتظر النشر التلقائي
-- اذهب إلى Render Dashboard
-- افتح `book-quote-api`
-- شاهد الـ Logs للتأكد من نجاح النشر
-- انتظر حتى ترى "Deploy live"
+### 3. Wait for Automatic Deployment
+- Go to Render Dashboard
+- Open `book-quote-api`
+- Watch the Logs to ensure successful deployment
+- Wait until you see "Deploy live"
 
-### 4. اختبر التطبيق
-- افتح: `https://book-quote-ui.onrender.com`
-- جرب تسجيل مستخدم جديد
-- جرب تسجيل الدخول
-
----
-
-## ⚠️ ملاحظات مهمة
-
-### أول استخدام بعد النشر
-1. **الخدمة ستكون في وضع Sleep**
-   - أول طلب سيستغرق 50-60 ثانية
-   - هذا طبيعي تماماً
-
-2. **قاعدة البيانات فارغة**
-   - لا توجد مستخدمين
-   - يجب تسجيل مستخدم جديد أولاً
-
-3. **البيانات مؤقتة**
-   - SQLite على Render قد تُحذف عند إعادة النشر
-   - هذا حل مؤقت للتطوير فقط
+### 4. Test the Application
+- Open: `https://book-quote-ui.onrender.com`
+- Try registering a new user
+- Try logging in
 
 ---
 
-## 🔍 التحقق من نجاح النشر
+## ⚠️ Important Notes
 
-### 1. تحقق من Logs
+### First Use After Deployment
+1. **Service Will Be in Sleep Mode**
+   - First request will take 50-60 seconds
+   - This is completely normal
+
+2. **Database is Empty**
+   - No users exist
+   - Must register a new user first
+
+3. **Data is Temporary**
+   - SQLite on Render may be deleted on redeployment
+   - This is a temporary solution for development only
+
+---
+
+## 🔍 Verify Successful Deployment
+
+### 1. Check Logs
 ```
 Render Dashboard → book-quote-api → Logs
 ```
 
-ابحث عن:
+Look for:
 - ✅ "Now listening on: http://[::]:10000"
 - ✅ "Application started"
-- ❌ أي أخطاء باللون الأحمر
+- ❌ Any errors in red
 
-### 2. اختبر الـ API مباشرة
-افتح في المتصفح:
+### 2. Test API Directly
+Open in browser:
 ```
 https://book-quote-api.onrender.com/
 ```
 
-يجب أن ترى صفحة (حتى لو كانت فارغة) - هذا يعني أن الخدمة تعمل.
+You should see a page (even if blank) - this means the service is running.
 
-### 3. اختبر التسجيل
-1. افتح: `https://book-quote-ui.onrender.com/register`
-2. سجل مستخدم جديد
-3. إذا نجح التسجيل، المشكلة محلولة! ✅
+### 3. Test Registration
+1. Open: `https://book-quote-ui.onrender.com/register`
+2. Register a new user
+3. If registration succeeds, problem is solved! ✅
 
 ---
 
-## 🆘 إذا استمرت المشكلة
+## 🆘 If Problem Persists
 
-### افحص الـ Logs في Render
+### Check Logs in Render
 ```
 Dashboard → book-quote-api → Logs
 ```
 
-### الأخطاء الشائعة:
+### Common Errors:
 
 #### 1. "Unable to create database"
-**الحل:** تأكد من أن `appsettings.Production.json` موجود
+**Solution:** Make sure `appsettings.Production.json` exists
 
 #### 2. "JWT Secret Key is missing"
-**الحل:** أضف Environment Variable في Render:
+**Solution:** Add Environment Variable in Render:
 ```
 JwtSettings__SecretKey = YourSuperSecretKeyHere
 ```
 
 #### 3. "CORS policy error"
-**الحل:** تأكد من أن `https://book-quote-ui.onrender.com` موجود في CORS settings
+**Solution:** Make sure `https://book-quote-ui.onrender.com` is in CORS settings
 
 ---
 
-## 💡 للاستخدام طويل الأمد
+## 💡 For Long-Term Use
 
-للإنتاج الفعلي، يُنصح باستخدام:
-- **PostgreSQL** (مدعوم مجاناً في Render)
-- **MySQL** (خيار آخر)
+For actual production, it's recommended to use:
+- **PostgreSQL** (supported for free in Render)
+- **MySQL** (another option)
 
-SQLite مناسب فقط للتطوير والاختبار.
+SQLite is suitable only for development and testing.
 
 ---
 
-## 📞 الدعم
+## 📞 Support
 
-إذا واجهت أي مشكلة:
-1. أرسل لقطة شاشة من Render Logs
-2. أرسل لقطة شاشة من Network tab في المتصفح
-3. اذكر رسالة الخطأ الكاملة
+If you encounter any issues:
+1. Send screenshot from Render Logs
+2. Send screenshot from Network tab in browser
+3. Mention the complete error message

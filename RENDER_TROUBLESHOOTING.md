@@ -1,86 +1,86 @@
-# 🔧 حل مشكلة تسجيل الدخول على Render
+# Render Deployment Troubleshooting Guide
 
-## 🔍 تشخيص المشكلة
+## Problem Diagnosis
 
-المشكلة الحالية: **النظام المحلي يعمل ✅ لكن النظام المنشور على Render لا يعمل ❌**
+**Current Issue:** Local system works ✅ but deployed system on Render doesn't work ❌
 
-### الأسباب المحتملة:
+### Possible Causes:
 
-#### 1. ⏱️ الخدمة في وضع Sleep (الأكثر احتمالاً)
-- الخطة المجانية في Render تدخل الخدمات في وضع sleep بعد 15 دقيقة
-- أول طلب يستغرق 50-60 ثانية لإيقاظ الخدمة
-- **الحل:** انتظر دقيقة كاملة بعد فتح الصفحة
+#### 1. ⏱️ Service in Sleep Mode (Most Likely)
+- Render's free tier puts services to sleep after 15 minutes of inactivity
+- First request takes 50-60 seconds to wake up the service
+- **Solution:** Wait a full minute after opening the page
 
-#### 2. 🗄️ قاعدة البيانات غير متصلة
-- الـ backend يحتاج إلى قاعدة بيانات SQL Server
-- قد لا تكون قاعدة البيانات مُعدة على Render
-- **الحل:** تحقق من إعدادات قاعدة البيانات في Render
+#### 2. 🗄️ Database Not Connected
+- Backend requires SQL Server database
+- Database may not be configured on Render
+- **Solution:** Check database settings in Render
 
-#### 3. 🔐 متغيرات البيئة مفقودة
+#### 3. 🔐 Missing Environment Variables
 - JWT Secret Key
 - Connection String
-- **الحل:** تحقق من Environment Variables في Render
+- **Solution:** Verify Environment Variables in Render
 
 ---
 
-## ✅ الحلول المقترحة
+## ✅ Proposed Solutions
 
-### الحل 1: التحقق من حالة الخدمات على Render
+### Solution 1: Check Service Status on Render
 
-1. **افتح Render Dashboard:**
-   - اذهب إلى: https://dashboard.render.com
-   - تحقق من حالة `book-quote-api`
-   - تحقق من الـ Logs لمعرفة أي أخطاء
+1. **Open Render Dashboard:**
+   - Go to: https://dashboard.render.com
+   - Check status of `book-quote-api`
+   - Check Logs for any errors
 
-2. **تحقق من الـ Logs:**
+2. **Check the Logs:**
    ```
    Dashboard → book-quote-api → Logs
    ```
-   - ابحث عن أخطاء مثل:
+   - Look for errors such as:
      - Database connection errors
      - Missing environment variables
      - JWT configuration errors
 
-### الحل 2: إعداد قاعدة البيانات
+### Solution 2: Database Setup
 
-**المشكلة:** الـ backend يستخدم SQL Server لكن Render لا يدعم SQL Server مجاناً.
+**Problem:** Backend uses SQL Server but Render doesn't support SQL Server for free.
 
-**الحل:** استخدم PostgreSQL بدلاً من SQL Server
+**Solution:** Use PostgreSQL instead of SQL Server
 
-#### خطوات التحويل إلى PostgreSQL:
+#### Steps to Convert to PostgreSQL:
 
-1. **أنشئ قاعدة بيانات PostgreSQL على Render:**
+1. **Create PostgreSQL database on Render:**
    - Dashboard → New → PostgreSQL
-   - اختر Free plan
-   - احفظ Connection String
+   - Choose Free plan
+   - Save Connection String
 
-2. **حدّث الكود ليستخدم PostgreSQL:**
+2. **Update code to use PostgreSQL:**
 
-**ملف:** `BookQuoteApi.csproj`
+**File:** `BookQuoteApi.csproj`
 ```xml
-<!-- استبدل -->
+<!-- Replace -->
 <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
 
-<!-- بـ -->
+<!-- With -->
 <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 ```
 
-**ملف:** `Program.cs`
+**File:** `Program.cs`
 ```csharp
-// استبدل
+// Replace
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 
-// بـ
+// With
 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 ```
 
-3. **أضف Connection String في Render:**
+3. **Add Connection String in Render:**
    - Dashboard → book-quote-api → Environment
-   - أضف: `ConnectionStrings__DefaultConnection` = [PostgreSQL Connection String]
+   - Add: `ConnectionStrings__DefaultConnection` = [PostgreSQL Connection String]
 
-### الحل 3: تحقق من Environment Variables
+### Solution 3: Verify Environment Variables
 
-تأكد من وجود هذه المتغيرات في Render:
+Make sure these variables exist in Render:
 
 ```
 JwtSettings__SecretKey = [your-secret-key-here]
@@ -90,78 +90,78 @@ JwtSettings__ExpirationInMinutes = 1440
 ConnectionStrings__DefaultConnection = [your-database-connection-string]
 ```
 
-### الحل 4: اختبار الـ Backend مباشرة
+### Solution 4: Test Backend Directly
 
-افتح المتصفح واذهب إلى:
+Open browser and go to:
 ```
 https://book-quote-api.onrender.com/api/Auth/login
 ```
 
-- إذا ظهرت صفحة بيضاء أو خطأ 404: الخدمة تعمل لكن تحتاج POST request
-- إذا لم تفتح الصفحة: الخدمة في وضع sleep أو معطلة
+- If you see a blank page or 404 error: Service is running but needs POST request
+- If page doesn't open: Service is asleep or disabled
 
 ---
 
-## 🚀 الحل السريع (مؤقت)
+## 🚀 Quick Solution (Temporary)
 
-إذا كنت تريد حلاً سريعاً بدون تعديل قاعدة البيانات:
+If you want a quick solution without modifying the database:
 
-### استخدم SQLite بدلاً من SQL Server
+### Use SQLite Instead of SQL Server
 
-1. **حدّث `BookQuoteApi.csproj`:**
+1. **Update `BookQuoteApi.csproj`:**
 ```xml
 <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
 ```
 
-2. **حدّث `Program.cs`:**
+2. **Update `Program.cs`:**
 ```csharp
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite("Data Source=bookquote.db"));
 ```
 
-3. **أعد نشر الكود:**
+3. **Redeploy the code:**
 ```bash
 git add .
 git commit -m "Switch to SQLite for Render deployment"
 git push origin main
 ```
 
-**ملاحظة:** SQLite مناسب للتطوير فقط، ليس للإنتاج.
+**Note:** SQLite is suitable for development only, not for production.
 
 ---
 
-## 📝 خطوات التحقق
+## 📝 Verification Steps
 
-1. ✅ **تحقق من أن الكود محدث على GitHub**
+1. ✅ **Verify code is updated on GitHub**
    ```bash
    git status
    git log -1
    ```
 
-2. ✅ **تحقق من أن Render نشر آخر تحديث**
+2. ✅ **Verify Render deployed latest update**
    - Dashboard → book-quote-ui → Events
-   - تأكد من وجود "Deploy live" حديث
+   - Make sure there's a recent "Deploy live"
 
-3. ✅ **تحقق من الـ Logs**
+3. ✅ **Check the Logs**
    - Dashboard → book-quote-api → Logs
-   - ابحث عن أخطاء
+   - Look for errors
 
-4. ✅ **اختبر الـ Backend مباشرة**
-   - استخدم Postman أو curl
-   - أرسل POST request إلى `/api/Auth/register`
-
----
-
-## 🆘 إذا استمرت المشكلة
-
-أرسل لي:
-1. لقطة شاشة من Render Logs للـ backend
-2. لقطة شاشة من Network tab في المتصفح عند محاولة التسجيل
-3. رسالة الخطأ الكاملة
+4. ✅ **Test Backend directly**
+   - Use Postman or curl
+   - Send POST request to `/api/Auth/register`
 
 ---
 
-## 💡 نصيحة
+## 🆘 If Problem Persists
 
-للتطوير والاختبار، استخدم النظام المحلي (localhost) لأنه أسرع وأكثر موثوقية.
-استخدم Render فقط للعرض النهائي (demo/production).
+Send me:
+1. Screenshot from Render Logs for backend
+2. Screenshot from Network tab in browser when trying to register
+3. Complete error message
+
+---
+
+## 💡 Tip
+
+For development and testing, use the local system (localhost) as it's faster and more reliable.
+Use Render only for final demo/production.

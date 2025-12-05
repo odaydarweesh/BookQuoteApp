@@ -41,7 +41,7 @@ export class LoginComponent {
           console.log('Token value:', response.token);
 
           if (response && response.success && response.token) {
-            // token تم حفظه في AuthService (localStorage)
+            // Token is saved in AuthService (localStorage)
             this.router.navigate(['/books']);
           } else {
             this.errorMessage = response.message || 'Login failed. Please check your credentials.';
