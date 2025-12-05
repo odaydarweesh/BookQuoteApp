@@ -75,10 +75,27 @@ namespace BookQuoteApi.Services
 
         public async Task<AuthResponse> Login(LoginRequest request)
         {
+            Console.WriteLine($"Login attempt for email: {request.Email}");
+            
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
 
-            if (user == null || !VerifyPassword(request.Password, user.PasswordHash))
+            if (user == null)
             {
+                Console.WriteLine($"User not found for email: {request.Email}");
+                return new AuthResponse
+                {
+                    Success = false,
+                    Message = "Invalid email or password"
+                };
+            }
+
+            Console.WriteLine($"User found: {user.Email}, checking password...");
+            bool passwordValid = VerifyPassword(request.Password, user.PasswordHash);
+            Console.WriteLine($"Password valid: {passwordValid}");
+
+            if (!passwordValid)
+            {
+                Console.WriteLine("Password verification failed");
                 return new AuthResponse
                 {
                     Success = false,
@@ -87,6 +104,7 @@ namespace BookQuoteApi.Services
             }
 
             string token = GenerateJwtToken(user.Id, user.Username, user.Email);
+            Console.WriteLine($"Login successful for user: {user.Email}");
 
             return new AuthResponse
             {

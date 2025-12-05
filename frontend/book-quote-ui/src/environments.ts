@@ -7,16 +7,16 @@ export const environment = {
   //User Authentication
   apiUrlAuth: isProd
     ? 'https://bookquoteapp-8pxm.onrender.com/api/Auth'
-    : 'https://localhost:7001/api/Auth',
+    : 'http://localhost:5010/api/Auth',
 
   // Books API
   apiUrlBooks: isProd
     ? 'https://bookquoteapp-8pxm.onrender.com/api/Books'
-    : 'https://localhost:7001/api/Books',
+    : 'http://localhost:5010/api/Books',
 
   //Quotes API)
 
   apiUrlQuotes: isProd
     ? 'https://bookquoteapp-8pxm.onrender.com/api/Quotes'
-    : 'https://localhost:7001/api/Quotes'
+    : 'http://localhost:5010/api/Quotes'
 };
