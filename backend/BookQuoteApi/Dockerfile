@@ -19,4 +19,5 @@ COPY --from=build /app/out .
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 
-ENTRYPOINT ["dotnet", "BookQuoteApp.dll"]
+ENTRYPOINT ["dotnet", "BookQuoteApi.dll"]
+
