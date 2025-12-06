@@ -109,3 +109,53 @@ label {
 .register-link a:hover {
   text-decoration: underline;
 }
+
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Tablet and below (max-width: 768px) */
+@media (max-width: 768px) {
+  .login-card {
+    padding: 30px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-card {
+    padding: 25px 20px;
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
+
+  .form-control {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn-primary {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .register-link p {
+    font-size: 13px;
+  }
+}

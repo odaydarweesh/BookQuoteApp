@@ -286,3 +286,149 @@
 .details-table tr:nth-child(even) {
   background: #fafafa;
 }
+/* ============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================ */
+
+/* Tablet and below (max-width: 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .navbar h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-secondary,
+  .btn-logout,
+  .btn-theme {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .content {
+    padding: 20px 15px;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .details-table-section {
+    overflow-x: auto;
+  }
+
+  .details-table {
+    font-size: 12px;
+  }
+
+  .details-table th,
+  .details-table td {
+    padding: 8px 10px;
+  }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+
+  .navbar h1 {
+    font-size: 18px;
+  }
+
+  .nav-actions {
+    gap: 8px;
+  }
+
+  .btn-secondary,
+  .btn-logout {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  .btn-theme {
+    padding: 6px 10px;
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 15px 10px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .form-card {
+    padding: 15px;
+  }
+
+  .form-card h2 {
+    font-size: 18px;
+  }
+
+  .form-control {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .book-card {
+    padding: 15px;
+  }
+
+  .book-card h3 {
+    font-size: 18px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    width: 100%;
+  }
+
+  .details-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .details-table th,
+  .details-table td {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}
+
+/* Large screens (min-width: 1200px) */
+@media (min-width: 1200px) {
+  .content {
+    max-width: 1400px;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
