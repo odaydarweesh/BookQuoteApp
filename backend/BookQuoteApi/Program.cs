@@ -64,8 +64,7 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins(
                     "http://localhost:4200",
-                    "https://book-quote-ui.onrender.com",
-                    "https://bookquoteapp-1.onrender.com"
+                    "https://bookquoteapp-ko6a.onrender.com"
                 )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
