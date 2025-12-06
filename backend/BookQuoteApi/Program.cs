@@ -12,15 +12,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // Add Database Context
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 var isProduction = builder.Environment.IsProduction();
+var connectionString = isProduction 
+    ? Environment.GetEnvironmentVariable("DATABASE_URL") 
+    : builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     if (isProduction)
     {
         // Use PostgreSQL for Render (production)
-        options.UseNpgsql(connectionString ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."));
+        options.UseNpgsql(connectionString ?? throw new InvalidOperationException("DATABASE_URL environment variable not found."));
     }
     else
     {
