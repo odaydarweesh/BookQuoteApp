@@ -21,9 +21,11 @@ namespace BookQuoteApi.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Username).IsRequired().HasMaxLength(50);
                 entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.PasswordHash).IsRequired();
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
                 entity.HasIndex(e => e.Username).IsUnique();
                 entity.HasIndex(e => e.Email).IsUnique();
             });
@@ -31,6 +33,7 @@ namespace BookQuoteApi.Data
             modelBuilder.Entity<Book>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Title).IsRequired().HasMaxLength(200);
                 entity.Property(e => e.Author).IsRequired().HasMaxLength(100);
                 entity.Property(e => e.PublishedDate).IsRequired();
@@ -44,6 +47,7 @@ namespace BookQuoteApi.Data
             modelBuilder.Entity<Quote>(entity =>
             {
                 entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Text).IsRequired().HasMaxLength(500);
                 entity.Property(e => e.Author).HasMaxLength(100);
 
