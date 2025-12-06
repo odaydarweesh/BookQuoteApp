@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj": {}
+    "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj": {
+    "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
+        "projectUniqueName": "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
         "projectName": "BookQuoteApi",
-        "projectPath": "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
+        "projectPath": "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
         "packagesPath": "C:\\Users\\oday_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\obj\\",
+        "outputPath": "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

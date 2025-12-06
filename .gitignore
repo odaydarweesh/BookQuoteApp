@@ -1,0 +1,25 @@
+# Build artifacts
+publish/
+bin/
+obj/
+
+# Frontend
+node_modules/
+dist/
+.angular/
+
+# IDE
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

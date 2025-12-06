@@ -8,11 +8,7 @@ A web application for managing books and quotes with user authentication.
 - **Backend API**: https://bookquoteapi-m9gz.onrender.com
 - **Health Check**: https://bookquoteapi-m9gz.onrender.com/healthz
 
-## 📚 Documentation
-
-See **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** for complete deployment instructions and troubleshooting.
-
-## 🚀 Quick Deploy
+## 🚀 Quick Start
 
 ```bash
 git add .

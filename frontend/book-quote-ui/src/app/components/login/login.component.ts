@@ -34,12 +34,6 @@ export class LoginComponent {
     this.authService.login({ email: this.email, password: this.password })
       .subscribe({
         next: (response: any) => {
-          console.log('Login response:', response);
-          console.log('Response type:', typeof response);
-          console.log('Response keys:', Object.keys(response));
-          console.log('Success value:', response.success);
-          console.log('Token value:', response.token);
-
           if (response && response.success && response.token) {
             // Token is saved in AuthService (localStorage)
             this.router.navigate(['/books']);
@@ -50,9 +44,6 @@ export class LoginComponent {
           this.isLoading = false;
         },
         error: (error) => {
-          console.error('Login error:', error);
-          console.error('Error status:', error.status);
-          console.error('Error message:', error.message);
           this.errorMessage = 'Login error. Please check your credentials.';
           this.isLoading = false;
         }

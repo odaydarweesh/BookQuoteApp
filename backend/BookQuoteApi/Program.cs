@@ -49,11 +49,8 @@ else
     connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 }
 
-// Debug logging
+// Log environment info
 Console.WriteLine($"Environment: {(isProduction ? "Production" : "Development")}");
-Console.WriteLine($"Connection String Length: {connectionString?.Length ?? 0}");
-Console.WriteLine($"Connection String (first 20 chars): {(connectionString?.Length > 20 ? connectionString.Substring(0, 20) : connectionString)}");
-Console.WriteLine($"Full Connection String: {connectionString}");
 
 if (isProduction && string.IsNullOrEmpty(connectionString))
 {

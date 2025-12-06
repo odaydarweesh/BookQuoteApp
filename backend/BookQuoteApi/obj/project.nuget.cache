@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lo2oA7uYrH0=",
+  "dgSpecHash": "vXv9qlaO20g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\oday_\\Desktop\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
+  "projectFilePath": "D:\\Test\\BookQuoteApp\\backend\\BookQuoteApi\\BookQuoteApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oday_\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\oday_\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
