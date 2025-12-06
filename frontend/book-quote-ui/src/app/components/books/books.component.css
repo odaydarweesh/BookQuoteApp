@@ -1,6 +1,6 @@
 .books-container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: var(--bg-primary, #f5f5f5) !important;
 }
 
 /* Shared navbar styling */
@@ -56,6 +56,24 @@
   color: #667eea;
 }
 
+/* Theme toggle button */
+.btn-theme {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-theme:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+
 .content {
   max-width: 1200px;
   margin: 0 auto;
@@ -83,16 +101,16 @@
 }
 
 .form-card {
-  background: #ffffff;
+  background: var(--card-bg, #ffffff) !important;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
   margin-bottom: 30px;
 }
 
 .form-card h2 {
   margin-top: 0;
-  color: #333333;
+  color: var(--text-primary, #333333) !important;
 }
 
 .form-group {
@@ -102,22 +120,24 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #333333;
+  color: var(--text-primary, #333333) !important;
   font-weight: 500;
 }
 
 .form-control {
   width: 100%;
   padding: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--input-border, #e0e0e0);
   border-radius: 5px;
   font-size: 14px;
   box-sizing: border-box;
+  background: var(--input-bg, #ffffff) !important;
+  color: var(--text-primary, #333333) !important;
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: var(--input-focus-border, #667eea);
 }
 
 /* Cards grid */
@@ -128,31 +148,31 @@
 }
 
 .book-card {
-  background: #ffffff;
+  background: var(--card-bg, #ffffff) !important;
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow, 0 2px 10px rgba(0, 0, 0, 0.1));
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .book-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--card-hover-shadow, 0 5px 20px rgba(0, 0, 0, 0.15));
 }
 
 .book-card h3 {
   margin: 0 0 10px 0;
-  color: #333333;
+  color: var(--text-primary, #333333) !important;
   font-size: 20px;
 }
 
 .author {
-  color: #666666;
+  color: var(--text-secondary, #666666) !important;
   margin: 5px 0;
 }
 
 .date {
-  color: #999999;
+  color: var(--text-tertiary, #999999) !important;
   font-size: 14px;
   margin: 5px 0;
 }
@@ -192,7 +212,7 @@
 .empty-state {
   text-align: center;
   padding: 60px;
-  color: #999999;
+  color: var(--text-tertiary, #999999);
   font-size: 18px;
 }
 
@@ -220,6 +240,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -237,15 +258,16 @@
 
 .details-table-section h2 {
   margin-bottom: 15px;
-  color: #333333;
+  color: var(--text-primary, #333333) !important;
 }
 
 .details-table {
   width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
+  background: var(--card-bg, #ffffff) !important;
   border-radius: 8px;
   overflow: hidden;
+  color: var(--text-primary, #333333) !important;
 }
 
 .details-table th,

@@ -1,0 +1,273 @@
+/* ============================================
+   LIGHT THEME (Default)
+   ============================================ */
+body.light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-tertiary: #adb5bd;
+    --border-color: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+
+    /* Button colors */
+    --btn-primary-bg: #007bff;
+    --btn-primary-hover: #0056b3;
+    --btn-success-bg: #28a745;
+    --btn-success-hover: #218838;
+    --btn-danger-bg: #dc3545;
+    --btn-danger-hover: #c82333;
+    --btn-warning-bg: #ffc107;
+    --btn-warning-hover: #e0a800;
+
+    /* Card colors */
+    --card-bg: #ffffff;
+    --card-border: #dee2e6;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+    /* Input colors */
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-focus-border: #80bdff;
+    --input-focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+
+    /* Navbar colors */
+    --navbar-bg: #ffffff;
+    --navbar-text: #212529;
+    --navbar-border: #dee2e6;
+}
+
+/* ============================================
+   DARK THEME
+   ============================================ */
+body.dark-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3a3a3a;
+    --text-primary: #e9ecef;
+    --text-secondary: #adb5bd;
+    --text-tertiary: #6c757d;
+    --border-color: #495057;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+
+    /* Button colors */
+    --btn-primary-bg: #0d6efd;
+    --btn-primary-hover: #0b5ed7;
+    --btn-success-bg: #198754;
+    --btn-success-hover: #157347;
+    --btn-danger-bg: #dc3545;
+    --btn-danger-hover: #bb2d3b;
+    --btn-warning-bg: #ffc107;
+    --btn-warning-hover: #ffca2c;
+
+    /* Card colors */
+    --card-bg: #2d2d2d;
+    --card-border: #495057;
+    --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+    /* Input colors */
+    --input-bg: #2d2d2d;
+    --input-border: #495057;
+    --input-focus-border: #0d6efd;
+    --input-focus-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+
+    /* Navbar colors */
+    --navbar-bg: #2d2d2d;
+    --navbar-text: #e9ecef;
+    --navbar-border: #495057;
+}
+
+/* ============================================
+   GLOBAL STYLES USING CSS VARIABLES
+   ============================================ */
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Containers */
+.books-container,
+.quotes-container {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-header {
+    background-color: var(--bg-secondary) !important;
+    border-bottom-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-focus-border) !important;
+    color: var(--text-primary) !important;
+    box-shadow: var(--input-focus-shadow);
+}
+
+.form-control::placeholder {
+    color: var(--text-tertiary) !important;
+}
+
+.form-label {
+    color: var(--text-primary) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--btn-primary-bg) !important;
+    border-color: var(--btn-primary-bg) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-primary-hover) !important;
+    border-color: var(--btn-primary-hover) !important;
+}
+
+.btn-success {
+    background-color: var(--btn-success-bg) !important;
+    border-color: var(--btn-success-bg) !important;
+}
+
+.btn-success:hover {
+    background-color: var(--btn-success-hover) !important;
+    border-color: var(--btn-success-hover) !important;
+}
+
+.btn-danger {
+    background-color: var(--btn-danger-bg) !important;
+    border-color: var(--btn-danger-bg) !important;
+}
+
+.btn-danger:hover {
+    background-color: var(--btn-danger-hover) !important;
+    border-color: var(--btn-danger-hover) !important;
+}
+
+.btn-warning {
+    background-color: var(--btn-warning-bg) !important;
+    border-color: var(--btn-warning-bg) !important;
+    color: #000 !important;
+}
+
+.btn-warning:hover {
+    background-color: var(--btn-warning-hover) !important;
+    border-color: var(--btn-warning-hover) !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--navbar-border);
+}
+
+.navbar-brand,
+.nav-link {
+    color: var(--navbar-text) !important;
+}
+
+.nav-link:hover {
+    color: var(--btn-primary-bg) !important;
+}
+
+/* Tables */
+.table {
+    color: var(--text-primary) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Alerts */
+.alert {
+    border-color: var(--border-color) !important;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1) !important;
+    color: var(--text-primary) !important;
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.1) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Smooth transitions for theme changes */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* Override Bootstrap modal */
+.modal-content {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+
+.modal-header {
+    border-bottom-color: var(--border-color) !important;
+}
+
+.modal-footer {
+    border-top-color: var(--border-color) !important;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dropdown-item {
+    color: var(--text-primary) !important;
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Pagination */
+.page-link {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.page-link:hover {
+    background-color: var(--bg-secondary) !important;
+}
+
+.page-item.active .page-link {
+    background-color: var(--btn-primary-bg) !important;
+    border-color: var(--btn-primary-bg) !important;
+}

@@ -5,6 +5,7 @@ import { QuotesService, Quote } from '../../services/quotes.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
     selector: 'app-quotes',
@@ -28,7 +29,8 @@ export class QuotesComponent implements OnInit {
     constructor(
         private quotesService: QuotesService,
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        public themeService: ThemeService
     ) { }
 
     ngOnInit(): void {
@@ -110,5 +112,17 @@ export class QuotesComponent implements OnInit {
     logout(): void {
         this.authService.logout();
         this.router.navigate(['/login']);
+    }
+
+    toggleTheme(): void {
+        this.themeService.toggleTheme();
+    }
+
+    getThemeIcon(): string {
+        return this.themeService.isDarkMode() ? '☀️' : '🌙';
+    }
+
+    getThemeTooltip(): string {
+        return this.themeService.isDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode';
     }
 }

@@ -2,9 +2,11 @@
     <nav class="navbar">
         <h1>📚 Books Management</h1>
         <div class="nav-actions">
+            <button (click)="toggleTheme()" class="btn-theme" [title]="getThemeTooltip()">
+                {{ getThemeIcon() }}
+            </button>
             <button routerLink="/quotes" class="btn-secondary">Quotes</button>
             <button (click)="logout()" class="btn-logout">Logout</button>
-
         </div>
     </nav>
 
