@@ -13,9 +13,38 @@ builder.Services.AddEndpointsApiExplorer();
 
 // Add Database Context
 var isProduction = builder.Environment.IsProduction();
-var connectionString = isProduction 
-    ? Environment.GetEnvironmentVariable("DATABASE_URL") ?? ""
-    : builder.Configuration.GetConnectionString("DefaultConnection");
+
+string? connectionString = null;
+
+if (isProduction)
+{
+    // Try multiple possible environment variable names
+    connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+                    ?? Environment.GetEnvironmentVariable("PGDATABASE_URL")
+                    ?? Environment.GetEnvironmentVariable("POSTGRES_URL")
+                    ?? "";
+    
+    // If we got a connection string, ensure it has the full hostname
+    if (!string.IsNullOrEmpty(connectionString) && !connectionString.Contains(".render.com"))
+    {
+        // Render might be giving us a shortened hostname, rebuild it
+        var parts = connectionString.Split('@');
+        if (parts.Length == 2)
+        {
+            var afterAt = parts[1];
+            var hostAndDb = afterAt.Split('/');
+            if (hostAndDb.Length == 2 && !hostAndDb[0].Contains("."))
+            {
+                // Rebuild with full hostname
+                connectionString = $"{parts[0]}@{hostAndDb[0]}.frankfurt-postgres.render.com:5432/{hostAndDb[1]}";
+            }
+        }
+    }
+}
+else
+{
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+}
 
 // Debug logging
 Console.WriteLine($"Environment: {(isProduction ? "Production" : "Development")}");
