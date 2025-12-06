@@ -14,15 +14,25 @@ builder.Services.AddEndpointsApiExplorer();
 // Add Database Context
 var isProduction = builder.Environment.IsProduction();
 var connectionString = isProduction 
-    ? Environment.GetEnvironmentVariable("DATABASE_URL") 
+    ? Environment.GetEnvironmentVariable("DATABASE_URL") ?? ""
     : builder.Configuration.GetConnectionString("DefaultConnection");
+
+// Debug logging
+Console.WriteLine($"Environment: {(isProduction ? "Production" : "Development")}");
+Console.WriteLine($"Connection String Length: {connectionString?.Length ?? 0}");
+Console.WriteLine($"Connection String (first 20 chars): {(connectionString?.Length > 20 ? connectionString.Substring(0, 20) : connectionString)}");
+
+if (isProduction && string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("DATABASE_URL environment variable is not set or is empty!");
+}
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     if (isProduction)
     {
         // Use PostgreSQL for Render (production)
-        options.UseNpgsql(connectionString ?? throw new InvalidOperationException("DATABASE_URL environment variable not found."));
+        options.UseNpgsql(connectionString);
     }
     else
     {
