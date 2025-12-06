@@ -18,27 +18,30 @@ string? connectionString = null;
 
 if (isProduction)
 {
-    // Try multiple possible environment variable names
-    connectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-                    ?? Environment.GetEnvironmentVariable("PGDATABASE_URL")
-                    ?? Environment.GetEnvironmentVariable("POSTGRES_URL")
-                    ?? "";
+    // Get the DATABASE_URL
+    var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL") ?? "";
     
-    // If we got a connection string, ensure it has the full hostname
-    if (!string.IsNullOrEmpty(connectionString) && !connectionString.Contains(".render.com"))
+    if (!string.IsNullOrEmpty(databaseUrl))
     {
-        // Render might be giving us a shortened hostname, rebuild it
-        var parts = connectionString.Split('@');
-        if (parts.Length == 2)
+        // Parse PostgreSQL URL format: postgresql://user:password@host:port/database
+        // Convert to Npgsql format: Host=host;Port=port;Database=database;Username=user;Password=password
+        
+        try
         {
-            var afterAt = parts[1];
-            var hostAndDb = afterAt.Split('/');
-            if (hostAndDb.Length == 2 && !hostAndDb[0].Contains("."))
-            {
-                // Rebuild with full hostname
-                connectionString = $"{parts[0]}@{hostAndDb[0]}.frankfurt-postgres.render.com:5432/{hostAndDb[1]}";
-            }
+            var uri = new Uri(databaseUrl);
+            var userInfo = uri.UserInfo.Split(':');
+            
+            connectionString = $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error parsing DATABASE_URL: {ex.Message}");
+            throw new InvalidOperationException($"Invalid DATABASE_URL format: {ex.Message}");
+        }
+    }
+    else
+    {
+        throw new InvalidOperationException("DATABASE_URL environment variable is not set!");
     }
 }
 else
