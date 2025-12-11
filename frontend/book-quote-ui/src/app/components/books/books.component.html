@@ -38,8 +38,9 @@
 
                 <div class="form-group">
                     <label>Published Date</label>
-                    <input type="date" [(ngModel)]="bookForm.publishedDate" name="publishedDate" required
-                        class="form-control">
+                    <input type="text" [(ngModel)]="bookForm.publishedDate" name="publishedDate" required
+                        class="form-control" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}">
+                    <small class="hint-text">Format: YYYY-MM-DD</small>
                 </div>
 
                 <button type="submit" class="btn-primary">
