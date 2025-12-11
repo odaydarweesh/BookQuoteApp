@@ -286,6 +286,7 @@
 .details-table tr:nth-child(even) {
   background: #fafafa;
 }
+
 /* ============================================
    RESPONSIVE DESIGN - MEDIA QUERIES
    ============================================ */
@@ -438,4 +439,16 @@
   color: var(--text-tertiary, #999999) !important;
   margin-top: 4px;
   display: block;
+}
+
+.error-text {
+  color: #f44336;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
 }

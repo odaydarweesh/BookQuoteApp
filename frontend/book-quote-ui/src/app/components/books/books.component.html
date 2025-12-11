@@ -25,7 +25,7 @@
 
         <div *ngIf="showForm" class="form-card">
             <h2>{{ editMode ? 'Edit Book' : 'New Book' }}</h2>
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit()" #bookFormRef="ngForm">
                 <div class="form-group">
                     <label>Book Title</label>
                     <input type="text" [(ngModel)]="bookForm.title" name="title" required class="form-control">
@@ -39,11 +39,14 @@
                 <div class="form-group">
                     <label>Published Date</label>
                     <input type="text" [(ngModel)]="bookForm.publishedDate" name="publishedDate" required
-                        class="form-control" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}">
+                        class="form-control" placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" #dateInput="ngModel">
                     <small class="hint-text">Format: YYYY-MM-DD</small>
+                    <div *ngIf="dateInput.invalid && (dateInput.dirty || dateInput.touched)" class="error-text">
+                        Please enter a valid date in YYYY-MM-DD format.
+                    </div>
                 </div>
 
-                <button type="submit" class="btn-primary">
+                <button type="submit" class="btn-primary" [disabled]="!bookFormRef.valid">
                     {{ editMode ? 'Save Changes' : 'Add Book' }}
                 </button>
             </form>
